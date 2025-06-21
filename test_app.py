@@ -1,4 +1,8 @@
-from app import greet
+from app import app
 
 def test_greet():
-    assert greet("Bulls") == "Hello, Bulls!"
+    tester = app.test_client()
+    response = tester.get('/greet?name=Bulls')
+    assert response.status_code == 200
+    assert response.get_json() == {"message": "Hello, Bulls!"}
+
