@@ -36,5 +36,26 @@ def calculate():
 if __name__ == '__main__':
     app.run()
 
+@app.route('/api/calc')
+def api_calc():
+    try:
+        x = float(request.args.get('x'))
+        y = float(request.args.get('y'))
+        op = request.args.get('op')
+
+        if op == '+':
+            result = x + y
+        elif op == '-':
+            result = x - y
+        elif op == '*':
+            result = x * y
+        elif op == '/':
+            result = x / y
+        else:
+            return jsonify(error="Invalid operation"), 400
+
+        return jsonify(x=x, y=y, operation=op, result=result)
+    except Exception as e:
+        return jsonify(error=str(e)), 400
 
 
