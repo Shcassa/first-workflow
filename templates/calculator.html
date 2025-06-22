@@ -3,51 +3,87 @@
 <head>
     <title>Calculator</title>
     <style>
+        :root {
+            --bg: #f0f8ff;
+            --text: #2c3e50;
+            --card: #ffffff;
+            --button: #3498db;
+            --result: #27ae60;
+        }
+
+        body.dark {
+            --bg: #121212;
+            --text: #eeeeee;
+            --card: #1e1e1e;
+            --button: #6c5ce7;
+            --result: #00cec9;
+        }
+
         body {
-            background-color: #f0f8ff;
+            background-color: var(--bg);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
             text-align: center;
             padding-top: 100px;
+            transition: background-color 0.3s, color 0.3s;
         }
+
         h1 {
-            color: #2c3e50;
+            margin-bottom: 20px;
         }
+
         form {
-            background: #ffffff;
+            background: var(--card);
             display: inline-block;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 10px #ccc;
         }
-        input[type="number"] {
+
+        input[type="number"],
+        select {
             padding: 10px;
             margin: 10px;
             width: 100px;
             font-size: 16px;
         }
-        select {
-            padding: 10px;
-            margin: 10px;
-            font-size: 16px;
-        }
+
         button {
-            background-color: #3498db;
+            background-color: var(--button);
             color: white;
             padding: 10px 20px;
             font-size: 16px;
             border: none;
             border-radius: 5px;
             margin-top: 10px;
+            cursor: pointer;
         }
+
         .result {
             margin-top: 20px;
             font-size: 20px;
-            color: #27ae60;
+            color: var(--result);
         }
+
+        .toggle {
+            margin-top: 20px;
+        }
+
+        .toggle button {
+            background-color: transparent;
+            border: 2px solid var(--text);
+            color: var(--text);
+            padding: 6px 12px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
-    <h1>Simple Calculator 🧮</h1>
+    <h1>🧮 Simple Calculator</h1>
+
     <form action="/calculate" method="post">
         <input type="number" name="num1" step="any" required>
         <select name="operation">
@@ -66,6 +102,16 @@
             <strong>Result:</strong> {{ result }}
         </div>
     {% endif %}
+
+    <div class="toggle">
+        <button onclick="toggleDark()">🌙 Toggle Dark Mode</button>
+    </div>
+
+    <script>
+        function toggleDark() {
+            document.body.classList.toggle('dark');
+        }
+    </script>
 </body>
 </html>
 
