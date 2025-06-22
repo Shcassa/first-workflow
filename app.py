@@ -1,10 +1,12 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
+
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return '🔥 This API was auto-deployed with GitHub Actions & Render! 🔥'
+    return render_template('home.html')
+
 
 
 @app.route('/greet')
