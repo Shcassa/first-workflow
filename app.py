@@ -4,7 +4,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return 'Welcome to the Greet API!'
+    return '🔥 This API was auto-deployed with GitHub Actions & Render! 🔥'
+
 
 @app.route('/greet')
 def greet():
